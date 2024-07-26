@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./ExpenseForm.css";
 import { MdSend } from "react-icons/md";
 

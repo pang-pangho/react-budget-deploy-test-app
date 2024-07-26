@@ -10,7 +10,8 @@ const App = () => {
     { id: 3, charge: "식비", amount: 1200 },
   ]);
   const [charge, setCharge] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
+
   const [alert, setAlert] = useState({ show: false });
   const [id, setId] = useState(0);
   const [edit, setEdit] = useState(false);
@@ -18,7 +19,12 @@ const App = () => {
     setCharge(e.target.value);
   };
   const handleAmount = (e) => {
-    setAmount(e.target.value);
+    const value = e.target.value;
+    if (value.startsWith("0")) {
+      setAmount(value.slice(1));
+    } else {
+      setAmount(value);
+    }
   };
   const handleDelete = (id) => {
     const newExpense = expenses.filter((expense) => expense.id !== id);
@@ -57,6 +63,8 @@ const App = () => {
 
         handleAlert({ type: "success", text: "아이템이 생성되었습니다." });
       }
+      console.log(amount);
+
       setAmount(0);
       setCharge("");
     } else {
